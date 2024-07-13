@@ -5,7 +5,10 @@
 <h2>Description</h2>
 In this project, I’m setting up an Active Directory home lab with Splunk, Kali Linux, and Atomic Red Team. I'll try to simulate how a domain environment works, how to feed events into a SIEM, and generate telemetry from real-world attacks to help me get familiar with them for future jobs.
 <br />
-
+<p align="center">
+Diagram of Project: <br/>
+ <img src="https://i.imgur.com/SKUzoNX.png" height="80%" width="80%" alt="Project Diagram"/>
+</p>
 
 <h2>Virtual Box VM Machines used</h2>
 
