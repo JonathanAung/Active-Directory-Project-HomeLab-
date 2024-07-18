@@ -3,7 +3,7 @@
  ### [YouTube Guide](https://www.youtube.com/watch?v=5OessbOgyEo&list=PLG6KGSNK4PuBWmX9NykU0wnWamjxdKhDJ&index=13)
 
 <h2>Description</h2>
-In this project, I’m setting up an Active Directory home lab with Splunk, Kali Linux, and Atomic Red Team. I'll try to simulate how a domain environment works, how to feed events into a SIEM, and generate telemetry from real-world attacks to help me get familiar with them for future jobs.
+In this project, I’m setting up an Active Directory home lab with Splunk, Kali Linux, and Atomic Red Team. I'll try to simulate how a domain environment works, how to feed events into a SIEM, and generate telemetry from real-world attacks to help me get familiar with them for future projects/jobs.
 <br />
 <p align="center">
 Diagram of Project: <br/>
@@ -17,8 +17,8 @@ Diagram of Project: <br/>
 - <b>Ubuntu Server Splunk</b>
 - <b>Kali Linux</b>
 
-<h2>Program walk-through:</h2>
-
+<h2>Installations & Configurations:</h2>
+Before we do anything, we want to make sure our Virtual Machines are on the same network. 
 <p align="center">
 Launch the utility: <br/>
 <img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
