@@ -18,10 +18,10 @@ Diagram of Project: <br/>
 - <b>Kali Linux</b>
 
 <h2>Installations & Configurations:</h2>
-Before we do anything, we want to make sure our Virtual Machines are on the same network. 
+Before we do anything, we want to make sure our Virtual Machines are on the same network. We do this by going to "Tools", then "Network". Once we are there, select NAT-network and click on create. For simplicty purpose, I will be naming the network as "AD Project" and have the IPv4 Prefix as : 192.168.10.0/24 as shown in the diagram. Leave the "Enable DHCP" as it is and once we are done with all that, hit apply.
 <p align="center">
 Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/42E2xEe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Select the disk:  <br/>
