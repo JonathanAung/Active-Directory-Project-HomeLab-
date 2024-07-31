@@ -1,4 +1,4 @@
-<h1>Active-Directory-Project-HomeLab</h1>
+![image](https://github.com/user-attachments/assets/eb5a84ae-862d-4ce7-90a4-7448ac0fc0cc)<h1>Active-Directory-Project-HomeLab</h1>
 
  ### [YouTube Guide](https://www.youtube.com/watch?v=5OessbOgyEo&list=PLG6KGSNK4PuBWmX9NykU0wnWamjxdKhDJ&index=13)
 
@@ -18,23 +18,28 @@ Diagram of Project: <br/>
 - <b>Kali Linux</b>
 
 <h2>Installations & Configurations:</h2>
-Before we do anything, we want to make sure our Virtual Machines are on the same network. We do this by going to "Tools", then "Network". Once we are there, select NAT-network and click on create. For simplicty purpose, I will be naming the network as "AD Project" and have the IPv4 Prefix as : 192.168.10.0/24 as shown in the diagram. Leave the "Enable DHCP" as it is and once we are done with all that, hit apply.
+Before we do anything, we want to make sure our Virtual Machines are on the same network. We do this by going to "Tools", then "Network" on the VirtualBox. Once we are there, select NAT-network and click on create. For simplicty purpose, I will be naming the network as "AD Project" and have the IPv4 Prefix as : 192.168.10.0/24 as shown in the diagram. Leave the "Enable DHCP" as it is and once we are done with all that, hit apply.
 <p align="center">
-Launch the utility: <br/>
+Change the network to NAT-network: <br/>
 <img src="https://i.imgur.com/42E2xEe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Launch our Splunk Server:
+ note: make sure you are on the right network setting by using the command `` ` ip a ` ``
+ <br/>
+<img src=https://i.imgur.com/lU48vle.png height="80%" width="80%" alt="Checking IP address step using ```ip a ```"/>
+<br />
+Awesome, we see that the line "inet 192.168.10.10/24 ... " does indeed reflect our network configurations! <br />
+However, if it doesn't reflect the same ip address (which is what happened to me at first), you want to type in <br /> ```sudo nano /etc/netplan/00-installer-config.yaml`` 
+<br />
+You want to change your settings from this: <br/>
+<img src=https://i.imgur.com/xouvqhg.png height="80%" width="80%" alt="Original 00-installer-config.yaml settings"/>
 <br />
 <br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+To this (Make sure the indentation are correct!):  <br/>
+<img src=https://i.imgur.com/aoAte5F.png height="80%" width="80%" alt="Modified 00-installer-config.yaml settings"/>
 <br />
-<br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
+ once we are done with it, try out our ```ip a``` command once more, and this time the ip should be correct.
 <br />
 Wait for process to complete (may take some time):  <br/>
 <img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -44,8 +49,9 @@ Sanitization complete:  <br/>
 <img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Observe the wiped disk:  <br/>
+text:  <br/>
 <img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+ <br/>
 </p>
 
 <!--
