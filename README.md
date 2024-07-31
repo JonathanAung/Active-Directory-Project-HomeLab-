@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/eb5a84ae-862d-4ce7-90a4-7448ac0fc0cc)<h1>Active-Directory-Project-HomeLab</h1>
+<h1>Active-Directory-Project-HomeLab</h1>
 
  ### [YouTube Guide](https://www.youtube.com/watch?v=5OessbOgyEo&list=PLG6KGSNK4PuBWmX9NykU0wnWamjxdKhDJ&index=13)
 
@@ -39,7 +39,7 @@ You want to change your settings from this: <br/>
 To this (Make sure the indentation are correct!):  <br/>
 <img src=https://i.imgur.com/aoAte5F.png height="80%" width="80%" alt="Modified 00-installer-config.yaml settings"/>
 <br />
- once we are done with it, try out our ```ip a``` command once more, and this time the ip should be correct.
+ once we are done with it, type ```sudo netplan apply``` to apply our changes and try out our ```ip a``` command once more, and this time the ip should be correct.
 <br />
 Wait for process to complete (may take some time):  <br/>
 <img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
