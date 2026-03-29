@@ -1,92 +1,78 @@
 <h1>SOC Automation Project</h1>
 
-### [YouTube Guide (MyDFIR)](https://www.youtube.com/watch?v=5OessbOgyEo)
+### [YouTube Guide](https://www.youtube.com/watch?v=5OessbOgyEo)
 
 <h2>Description</h2>
-
-In this project, I built an automated Security Operations Center (SOC) workflow that mimics what real companies use to handle security alerts. Instead of a SOC analyst manually investigating every single alert, this system automatically triages, enriches, and creates cases — so analysts can focus on real threats.
-
-Think of it like this: imagine a fire alarm system that not only rings the alarm but also automatically calls the fire department, logs the incident, and pulls up the building's floor plan — all without anyone lifting a finger.
-
+In this project, I'm building an automated SOC workflow that mimics what real companies use to handle security alerts. The idea is that instead of a SOC analyst manually triaging every single alert, the system does it automatically. I wanted to understand how these tools connect to each other and how real teams use automation to cut down on repetitive work.
+<br />
 <p align="center">
-Project Diagram: <br/>
-<img src="Diagram.drawio" height="80%" width="80%" alt="SOC Automation Diagram"/>
+Diagram of Project: <br/>
+<img src="Diagram.drawio" height="80%" width="80%" alt="SOC Automation Project Diagram"/>
 </p>
 
-<h2>Tools & Technologies Used</h2>
+<h2>Tools Used</h2>
 
-| Tool | Role | Plain English Explanation |
-|---|---|---|
-| **Wazuh** | EDR / SIEM | The "security camera" — monitors endpoints and generates alerts |
-| **TheHive** | Case Management | The "incident ticket system" — organizes and tracks each alert as a case |
-| **Shuffle SOAR** | Automation Engine | The "robot analyst" — connects everything and automates repetitive tasks |
-| **MISP** | Threat Intelligence | The "threat database" — checks if IPs/hashes are known malicious indicators |
-| **DigitalOcean** | Cloud Infrastructure | Where the servers live (cloud VMs instead of local VirtualBox) |
+- <b>Wazuh</b> - SIEM and EDR, monitors the Windows endpoint and generates alerts
+- <b>Shuffle SOAR</b> - the automation engine that connects all the tools together
+- <b>TheHive</b> - case management, every alert gets turned into a tracked case here
+- <b>MISP</b> - threat intelligence platform, checks if IPs or file hashes are known bad indicators
+- <b>DigitalOcean</b> - cloud VMs where all the servers are hosted
 
-<h2>Architecture Overview</h2>
+<h2>How It Works</h2>
 
-```
-[Windows 10 Client]
-       |
-       | (sends logs/alerts)
-       v
-[Wazuh SIEM/EDR]  ──────────────────────────────────>  [Shuffle SOAR]
-                                                              |
-                                              ┌───────────────┼───────────────┐
-                                              v               v               v
-                                          [MISP]         [TheHive]       [Email Alert]
-                                      (threat intel)   (case created)   (analyst notified)
-```
+Once everything is set up, the flow goes like this:
+<br />
+1. Wazuh detects something suspicious on the Windows 10 client and fires an alert
+<br />
+2. That alert gets sent to Shuffle SOAR
+<br />
+3. Shuffle checks the IOC (IP address or file hash) against MISP to see if it's a known threat
+<br />
+4. Shuffle automatically creates a case in TheHive with all the enriched information
+<br />
+5. An email notification goes out so the analyst knows to take a look
+<br />
 
-**Flow:**
-1. Wazuh detects suspicious activity on the Windows client
-2. Alert is sent to **Shuffle SOAR** (the automation engine)
-3. Shuffle checks the IOC (IP, file hash) against **MISP** for threat intel
-4. Shuffle automatically creates a case in **TheHive** with all enriched data
-5. Analyst receives an email notification with the full context
+<h2>Installations and Configurations</h2>
+
+<p align="center">
+Setting up Wazuh on DigitalOcean: <br/>
+<br />
+Setting up TheHive: <br/>
+<br />
+Configuring Shuffle workflows: <br/>
+<br />
+</p>
 
 <h2>What I Learned</h2>
 
-- How **SOAR (Security Orchestration, Automation & Response)** works in a real SOC environment
-- How to connect multiple security tools via **API integrations** (webhooks, REST APIs)
-- How **Wazuh** monitors endpoints and generates alerts for suspicious behavior
-- How **case management** works in TheHive — creating cases, assigning tasks, tracking status
-- How **threat intelligence platforms** (MISP) enrich alerts with known IOC data
-- How to deploy and manage **cloud servers** on DigitalOcean (Linux VMs)
-- The concept of **MTTR (Mean Time to Respond)** and how automation reduces it
-
-<h2>Key Concepts (Plain English)</h2>
-
-**SOAR** = A robot that connects your security tools and automates repetitive analyst tasks. Like a smart assistant that reads every alert and does the boring investigation steps for you.
-
-**EDR (Wazuh)** = Software installed on computers that watches for suspicious behavior — like if a process tries to access sensitive files or a user logs in at 3am.
-
-**Case Management (TheHive)** = A ticketing system for security incidents. Every alert becomes a "case" that can be assigned, tracked, and closed. Like Jira, but for cyberattacks.
-
-**Threat Intelligence (MISP)** = A shared database of known bad actors — malicious IPs, file hashes, domain names. If an alert matches something in MISP, it's almost certainly malicious.
-
-**IOC (Indicator of Compromise)** = Digital evidence that a system may have been compromised. Examples: a suspicious IP address, a known malware file hash, an unusual login time.
+- How SOAR (Security Orchestration, Automation and Response) works in a real SOC environment
+- How to connect multiple security tools using API integrations and webhooks
+- How Wazuh monitors endpoints and what its alerts look like
+- How case management works in TheHive and how analysts track incidents
+- How threat intelligence platforms like MISP enrich alerts with known IOC data
+- How to deploy and manage cloud servers on DigitalOcean
+- What MTTR (Mean Time to Respond) means and how automation helps bring it down
 
 <h2>Skills Demonstrated</h2>
 
 | Skill | Tool |
 |---|---|
 | SOAR Automation | Shuffle |
-| SIEM & Endpoint Detection | Wazuh |
+| SIEM and Endpoint Detection | Wazuh |
 | Case Management | TheHive |
 | Threat Intelligence | MISP |
 | API Integration | REST APIs, Webhooks |
 | Cloud Infrastructure | DigitalOcean Linux VMs |
-| Incident Response Workflow | End-to-end alert triage |
 
 <h2>Future Improvements</h2>
 
-- [ ] Add Slack/Discord notification integration in Shuffle
-- [ ] Build custom Wazuh detection rules for specific attack patterns
-- [ ] Integrate VirusTotal API for automated file hash lookups
-- [ ] Create a Grafana dashboard to visualize alert trends over time
-- [ ] Document a full incident response walkthrough from alert to close
+- [ ] <b>Slack/Discord notifications</b> - add a messaging integration into the Shuffle workflow
+- [ ] <b>Custom Wazuh rules</b> - write detection rules for specific attack patterns
+- [ ] <b>VirusTotal integration</b> - automate file hash lookups inside Shuffle
+- [ ] <b>Grafana dashboard</b> - visualize alert trends over time
+- [ ] <b>Full IR walkthrough</b> - document a complete incident from alert to case close
 
 <h2>Related Projects</h2>
 
-- [Active Directory HomeLab](https://github.com/JonathanAung/Active-Directory-Project-HomeLab-) — The foundation lab this project builds on
+- [Active Directory HomeLab](https://github.com/JonathanAung/Active-Directory-Project-HomeLab-)

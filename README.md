@@ -87,9 +87,9 @@ text:  <br/>
 
 <h2>Future Project Ideas (Roadmap)</h2>
 
-- [ ] **Honeypot Deployment** — Set up a decoy server and log attacker behavior
-- [ ] **CTF Writeups** — Document TryHackMe / HackTheBox solutions to build offensive skills
-- [ ] **Custom Splunk Detection Rules** — Write SPL queries to catch specific attack patterns from this lab
-- [ ] **Phishing Email Analyzer** — Build a Python script to parse email headers and flag suspicious indicators
-- [ ] **Incident Response Playbook** — Document step-by-step response procedures for alerts generated in this lab
+- [ ] <b>Honeypot Deployment</b> - Set up a decoy server and log attacker behavior
+- [ ] <b>CTF Writeups</b> - Document TryHackMe / HackTheBox solutions to build offensive skills
+- [ ] <b>Custom Splunk Detection Rules</b> - Write SPL queries to catch specific attack patterns from this lab
+- [ ] <b>Phishing Email Analyzer</b> - Build a Python script to parse email headers and flag suspicious indicators
+- [ ] <b>Incident Response Playbook</b> - Document step-by-step response procedures for alerts generated in this lab
 
