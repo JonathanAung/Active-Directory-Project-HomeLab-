@@ -10,26 +10,27 @@
 
 class Password {
 private:
-    std::string value;
-    int score;
-    std::vector<std::string> feedback;
+    std::string value;      // the actual password string the user typed in
+    int score;              // the strength score out of 100
+    std::vector<std::string> feedback; // list of suggestions to improve the password
 
-    // These are the individual checks we run
-    bool hasUppercase() const;
-    bool hasLowercase() const;
-    bool hasDigit() const;
-    bool hasSpecialChar() const;
-    bool isLongEnough() const;
-    bool isVeryLong() const;
+    // Private helper methods - these do one check each and return true or false
+    bool hasUppercase() const;    // does it have at least one A-Z?
+    bool hasLowercase() const;    // does it have at least one a-z?
+    bool hasDigit() const;        // does it have at least one 0-9?
+    bool hasSpecialChar() const;  // does it have at least one !@#$ etc?
+    bool isLongEnough() const;    // is it 8+ characters?
+    bool isVeryLong() const;      // is it 16+ characters?
 
 public:
+    // Constructor: takes the password string as input
     Password(std::string input);
 
-    void analyze();               // runs all the checks and builds the score
-    int getScore() const;         // returns score out of 100
-    std::string getRating() const; // returns "Weak", "Fair", "Strong", or "Very Strong"
-    std::vector<std::string> getFeedback() const; // returns list of suggestions
-    void printReport() const;     // prints everything to the terminal
+    void analyze();                        // runs all checks, builds score and feedback
+    int getScore() const;                  // returns the score (0-100)
+    std::string getRating() const;         // returns "Weak", "Fair", "Strong", or "Very Strong"
+    std::vector<std::string> getFeedback() const; // returns the list of suggestions
+    void printReport() const;             // prints the full report to the terminal
 };
 
 #endif

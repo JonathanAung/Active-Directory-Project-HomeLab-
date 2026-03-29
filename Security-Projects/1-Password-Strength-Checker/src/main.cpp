@@ -3,22 +3,17 @@
 #include "Password.h"
 
 int main() {
-    std::string input;
+    // TODO: declare a string variable to hold the user's input
 
-    std::cout << "\n==========================================\n";
-    std::cout << "       PASSWORD STRENGTH CHECKER\n";
-    std::cout << "==========================================\n";
-    std::cout << "Enter a password to check: ";
-    std::cin >> input;
+    // TODO: print a welcome message and prompt the user to enter a password
 
-    // Create a Password object with the user's input
-    Password p(input);
+    // TODO: use std::cin to read the input
 
-    // Run the analysis
-    p.analyze();
+    // TODO: create a Password object using the input
 
-    // Print the full report
-    p.printReport();
+    // TODO: call analyze() on the object
+
+    // TODO: call printReport() on the object
 
     return 0;
 }
