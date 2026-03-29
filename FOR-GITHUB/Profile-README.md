@@ -3,7 +3,7 @@
 <h2>Cybersecurity Enthusiast | Aspiring SOC Analyst | Home Lab Builder</h2>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/YOUR-LINKEDIN">LinkedIn</a> |
+  <a href="https://www.linkedin.com/in/jonathan-xiong">LinkedIn</a> |
   <a href="https://github.com/JonathanAung">GitHub</a>
 </p>
 
