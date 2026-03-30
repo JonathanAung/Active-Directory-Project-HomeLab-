@@ -43,13 +43,14 @@ IP Reputation         Hash Lookup                    Incident Created
 
 ## Environment
 
-- **Wazuh Manager:** Ubuntu 22.04 (VM / VPS)
+- **Wazuh Manager:** Ubuntu 22.04 — DigitalOcean Droplet (4GB RAM / 2 vCPU)
+- **Wazuh Version:** 4.7.3
 - **Wazuh Agent:** Windows 10 endpoint
 - **Shuffle:** Cloud instance (shuffler.io)
-- **TheHive:** Self-hosted on Ubuntu
-- **Network:** NAT / isolated lab environment
+- **TheHive:** 5.2.4 — self-hosted on Ubuntu 22.04 DigitalOcean Droplet
+- **Network:** DigitalOcean private networking (10.x.x.x range)
 
-<!-- TODO: Update with your actual setup - local VMs, cloud provider, IP ranges -->
+> **Note:** The cloud infrastructure was decommissioned after the project was completed to manage hosting costs. All configuration, scripts, and documentation are preserved in this repository. The lab can be rebuilt from the steps documented here.
 
 ---
 
@@ -76,9 +77,7 @@ Manual analyst steps required: **zero.**
 
 TheHive 5 changed its API structure significantly from TheHive 4. The Shuffle TheHive app was built for v4, so alerts were being sent but cases weren't being created - no error, just silence.
 
-Fix: Manually mapped the Shuffle HTTP action to TheHive 5's `/api/v1/alert` endpoint with the correct JSON body structure. Hardcoded the required `type` and `source` fields that TheHive 5 requires but v4 did not.
-
-<!-- TODO: Add your specific version numbers and the exact fields that were missing -->
+Fix: Manually mapped the Shuffle HTTP action to TheHive 5's `/api/v1/alert` endpoint with the correct JSON body structure. The Shuffle TheHive app (built for TheHive 4) was sending to `/api/alert` — TheHive 5.2.4 requires `/api/v1/alert` and additionally expects `type` and `source` fields in the request body that v4 did not enforce. Added both fields as static values (`"type": "wazuh"`, `"source": "wazuh-integration"`) in the Shuffle HTTP action body to resolve.
 
 **2. Shuffle Webhook Authentication**
 
@@ -145,7 +144,7 @@ Trigger: Wazuh Webhook
 }
 ```
 
-<!-- TODO: Replace with a real sanitized output from your lab -->
+*Sample output from a Mimikatz detection event. Source IP and ISP details sanitized.*
 
 ---
 
