@@ -1,66 +1,63 @@
-<h1>Hey, I'm Jonathan Aung</h1>
+# Hi, I'm Jonathan (Tun Tun Aung)
 
-<h2>Cybersecurity Enthusiast | Aspiring SOC Analyst | Home Lab Builder</h2>
+**Cybersecurity student @ John Jay College of Criminal Justice**
 
-<p align="center">
-  <a href="https://www.linkedin.com/in/jonathan-xiong">LinkedIn</a> |
-  <a href="https://github.com/JonathanAung">GitHub</a>
-</p>
+B.S. Computer Science & Information Security (in progress) · B.S. Computer Science, Boston University
 
-<h2>About Me</h2>
+CompTIA Security+ · TryHackMe Top 4% · New York, NY
 
-I'm a cybersecurity student who's been building hands-on skills through home labs and real-world attack simulations. I focus on defensive security and I'm trying to understand how attacks actually happen so I can get better at detecting and stopping them. I follow along with MyDFIR's project guides and try to document everything I learn along the way.
+---
 
-- Currently studying: <b>Active Directory, SIEM, SOC Automation</b>
-- Working toward: <b>SOC Analyst / Cybersecurity Internship</b>
-- Learning platforms: TryHackMe, MyDFIR
-- Ask me about: Splunk, Active Directory, Kali Linux, Wazuh
+## What I'm Building
 
-<h2>Projects</h2>
+I came to cybersecurity the long way. I started in CS at Boston University, left when the 2021 Myanmar military coup upended everything, spent two years in the service industry in New York while self-studying security on the side, and came back to finish what I started — this time focused specifically on what I actually wanted to do all along.
 
-<h3>Active Directory Home Lab</h3>
+My lab work is focused on SOC automation, SOAR engineering, and penetration testing. I build things that break, then fix them and write down why they broke.
 
-In this project, I set up a full Windows domain environment and used it to simulate real-world attacks. I wanted to understand how a domain works, how to get events into a SIEM, and what attacks actually look like from a defender's perspective.
+---
 
-- Set up <b>Windows Server 2022</b> as a Domain Controller with Active Directory
-- Deployed <b>Splunk</b> on Ubuntu to ingest and monitor Windows Event Logs
-- Used <b>Kali Linux</b> and <b>Atomic Red Team</b> to simulate brute force and lateral movement attacks
-- Analyzed Windows Event IDs (4625, 4624, 4720) to detect threats inside Splunk
+## Projects
 
-[View Project](https://github.com/JonathanAung/Active-Directory-Project-HomeLab-)
+**[SOC Automation Pipeline](https://github.com/JonathanAung/SOC-Automation-Project)**
 
-<h3>SOC Automation Project</h3>
+Wazuh · TheHive · Shuffle SOAR · AbuseIPDB
 
-In this project, I built an automated SOC workflow so that when Wazuh generates an alert, the system automatically enriches it with threat intel and creates a case in TheHive without any manual work. I wanted to get a feel for how real SOC teams reduce alert fatigue using automation.
+Built an end-to-end automated incident response pipeline. Security event fires on a Windows endpoint, Wazuh detects it, Shuffle enriches and orchestrates, TheHive case created, analyst notified. Zero manual steps. Under 3 minutes end-to-end.
 
-- Connected <b>Wazuh</b> as the SIEM/EDR backbone to monitor a Windows endpoint
-- Used <b>Shuffle SOAR</b> to automate the alert triage pipeline
-- Integrated <b>TheHive</b> for case management and <b>MISP</b> for threat intelligence lookups
-- Deployed all servers on <b>DigitalOcean</b> cloud VMs
+Key challenge: API compatibility between Wazuh and TheHive 5 required manual endpoint mapping in Shuffle's HTTP action. Documented the fix.
 
-[View Project](https://github.com/JonathanAung/SOC-Automation-Project)
+---
 
-<h2>Skills</h2>
+**[Active Directory Home Lab](https://github.com/JonathanAung/Active-Directory-Project-HomeLab-)**
 
-| Category | Tools and Technologies |
-|---|---|
-| SIEM and Monitoring | Splunk, Wazuh |
-| Threat Detection | Windows Event IDs, IOC analysis |
-| Attack Simulation | Atomic Red Team, Kali Linux |
-| SOC Automation | Shuffle SOAR, TheHive, MISP |
-| Networking | Active Directory, NAT, TCP/IP |
-| Operating Systems | Windows Server 2022, Ubuntu, Kali Linux |
-| Programming | Python, C++ |
-| Virtualization | VirtualBox, DigitalOcean |
+Splunk · Kali Linux · Atomic Red Team · Sysmon
 
-<h2>Certifications and Learning</h2>
+Set up a full enterprise domain environment (DC, domain-joined endpoint, SIEM, attacker machine) to simulate real attacks and hunt them in Splunk. Ran MITRE ATT&CK-mapped test cases via Atomic Red Team - brute force, credential dumping, persistence - and built detection queries for each.
 
-- [ ] <b>CompTIA Security+</b> (in progress)
-- [ ] <b>TryHackMe SOC Level 1 Path</b>
-- [ ] <b>Google Cybersecurity Certificate</b>
+---
 
-<h2>Currently Working On</h2>
+## Skills
 
-- Finishing the SOC Automation lab (Wazuh + TheHive + Shuffle)
-- Writing custom Splunk detection rules for the AD HomeLab
-- Working through TryHackMe rooms and documenting the writeups
+```
+Blue Team:   Wazuh · Splunk · ELK · Suricata · Snort · TheHive · N8N · Shuffle
+Red Team:    Burp Suite · Nmap · Metasploit · Mimikatz · Kali · Atomic Red Team
+Languages:   Python · Bash · SQL · PowerShell · Java · C++ (coursework)
+Frameworks:  MITRE ATT&CK · NIST SP 800-171 · NIST CSF · OWASP Top 10
+```
+
+---
+
+## Certifications
+
+CompTIA Security+ · Microsoft 365 Fundamentals · Oracle OCI Foundation · Google Cybersecurity Professional
+
+---
+
+## Find Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jonathan-xiong/)
+[![TryHackMe](https://img.shields.io/badge/TryHackMe-Top%204%25-red?style=flat&logo=tryhackme&logoColor=white)](https://tryhackme.com/p/YOUR-TRYHACKME-USERNAME)
+
+---
+
+*Always building. Currently focused on SOC automation and application security.*

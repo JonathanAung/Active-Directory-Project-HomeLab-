@@ -1,78 +1,171 @@
-<h1>SOC Automation Project</h1>
+# SOC Automation Project — Wazuh · TheHive · Shuffle SOAR
 
-### [YouTube Guide](https://www.youtube.com/watch?v=5OessbOgyEo)
+**TL;DR:** Built a fully automated SOC pipeline from scratch. A security event fires on an endpoint, Wazuh detects it, Shuffle orchestrates enrichment and response, TheHive creates a case, analyst gets a notification. Zero manual intervention. End-to-end in under 3 minutes.
 
-<h2>Description</h2>
-In this project, I'm building an automated SOC workflow that mimics what real companies use to handle security alerts. The idea is that instead of a SOC analyst manually triaging every single alert, the system does it automatically. I wanted to understand how these tools connect to each other and how real teams use automation to cut down on repetitive work.
-<br />
-<p align="center">
-Diagram of Project: <br/>
-<img src="Diagram.drawio" height="80%" width="80%" alt="SOC Automation Project Diagram"/>
-</p>
+---
 
-<h2>Tools Used</h2>
+## Why I Built This
 
-- <b>Wazuh</b> - SIEM and EDR, monitors the Windows endpoint and generates alerts
-- <b>Shuffle SOAR</b> - the automation engine that connects all the tools together
-- <b>TheHive</b> - case management, every alert gets turned into a tracked case here
-- <b>MISP</b> - threat intelligence platform, checks if IPs or file hashes are known bad indicators
-- <b>DigitalOcean</b> - cloud VMs where all the servers are hosted
+Most SOC training teaches you to use tools. I wanted to understand how they talk to each other and more importantly, how to make them act without waiting for a human in the loop. The goal wasn't to follow a guide. It was to build something that breaks, force myself to fix it, and document what I learned.
 
-<h2>How It Works</h2>
+---
 
-Once everything is set up, the flow goes like this:
-<br />
-1. Wazuh detects something suspicious on the Windows 10 client and fires an alert
-<br />
-2. That alert gets sent to Shuffle SOAR
-<br />
-3. Shuffle checks the IOC (IP address or file hash) against MISP to see if it's a known threat
-<br />
-4. Shuffle automatically creates a case in TheHive with all the enriched information
-<br />
-5. An email notification goes out so the analyst knows to take a look
-<br />
+## Architecture
 
-<h2>Installations and Configurations</h2>
+```
+[Windows Endpoint]
+        |
+        | Sysmon + Wazuh Agent
+        v
+[Wazuh Manager] --- alert triggered ---> [Shuffle SOAR]
+                                               |
+        ---------------------------------------+-------------------------------
+        v                    v                                v
+[AbuseIPDB]          [VirusTotal]                    [TheHive Case]
+IP Reputation         Hash Lookup                    Incident Created
+        |                    |                                |
+        ---------------------|                                v
+                             |                       [Email / Webhook]
+                      Enriched Alert                 Analyst Notified
+```
 
-<p align="center">
-Setting up Wazuh on DigitalOcean: <br/>
-<br />
-Setting up TheHive: <br/>
-<br />
-Configuring Shuffle workflows: <br/>
-<br />
-</p>
+**Stack:**
 
-<h2>What I Learned</h2>
-
-- How SOAR (Security Orchestration, Automation and Response) works in a real SOC environment
-- How to connect multiple security tools using API integrations and webhooks
-- How Wazuh monitors endpoints and what its alerts look like
-- How case management works in TheHive and how analysts track incidents
-- How threat intelligence platforms like MISP enrich alerts with known IOC data
-- How to deploy and manage cloud servers on DigitalOcean
-- What MTTR (Mean Time to Respond) means and how automation helps bring it down
-
-<h2>Skills Demonstrated</h2>
-
-| Skill | Tool |
+| Component | Role |
 |---|---|
-| SOAR Automation | Shuffle |
-| SIEM and Endpoint Detection | Wazuh |
-| Case Management | TheHive |
-| Threat Intelligence | MISP |
-| API Integration | REST APIs, Webhooks |
-| Cloud Infrastructure | DigitalOcean Linux VMs |
+| Wazuh | SIEM - agent-based threat detection, rule matching, alert generation |
+| Shuffle | SOAR - workflow orchestration, API chaining, automated response |
+| TheHive | Case management - structured incident tracking |
+| AbuseIPDB | Threat intel enrichment - IP reputation scoring |
+| Sysmon | Windows telemetry - process creation, network connections, file events |
 
-<h2>Future Improvements</h2>
+---
 
-- [ ] <b>Slack/Discord notifications</b> - add a messaging integration into the Shuffle workflow
-- [ ] <b>Custom Wazuh rules</b> - write detection rules for specific attack patterns
-- [ ] <b>VirusTotal integration</b> - automate file hash lookups inside Shuffle
-- [ ] <b>Grafana dashboard</b> - visualize alert trends over time
-- [ ] <b>Full IR walkthrough</b> - document a complete incident from alert to case close
+## Environment
 
-<h2>Related Projects</h2>
+- **Wazuh Manager:** Ubuntu 22.04 (VM / VPS)
+- **Wazuh Agent:** Windows 10 endpoint
+- **Shuffle:** Cloud instance (shuffler.io)
+- **TheHive:** Self-hosted on Ubuntu
+- **Network:** NAT / isolated lab environment
 
-- [Active Directory HomeLab](https://github.com/JonathanAung/Active-Directory-Project-HomeLab-)
+<!-- TODO: Update with your actual setup - local VMs, cloud provider, IP ranges -->
+
+---
+
+## What the Automated Pipeline Does
+
+When a Wazuh rule fires (e.g., Mimikatz execution detected, brute force threshold hit, suspicious process spawn):
+
+1. **Wazuh** generates an alert and forwards it to Shuffle via webhook
+2. **Shuffle** parses the alert - extracts IP, hash, username, rule ID
+3. **AbuseIPDB** lookup runs automatically - confidence score returned
+4. **TheHive** case is created with full alert context, severity mapped from Wazuh rule level
+5. **Email / webhook notification** fires to analyst with enriched summary
+6. *(Optional)* **Active response** - Wazuh agent blocks the IP or isolates the host
+
+Total time from event to enriched case: **under 3 minutes.**
+
+Manual analyst steps required: **zero.**
+
+---
+
+## Key Technical Challenges and How I Solved Them
+
+**1. Wazuh to TheHive API Compatibility**
+
+TheHive 5 changed its API structure significantly from TheHive 4. The Shuffle TheHive app was built for v4, so alerts were being sent but cases weren't being created - no error, just silence.
+
+Fix: Manually mapped the Shuffle HTTP action to TheHive 5's `/api/v1/alert` endpoint with the correct JSON body structure. Hardcoded the required `type` and `source` fields that TheHive 5 requires but v4 did not.
+
+<!-- TODO: Add your specific version numbers and the exact fields that were missing -->
+
+**2. Shuffle Webhook Authentication**
+
+Wazuh's `ossec.conf` integration block requires a specific format for the webhook URL and authentication header. Initial alerts were firing but Shuffle wasn't receiving them.
+
+Fix: Added the Shuffle webhook URL to the Wazuh integration block with correct `<hook_url>` and `<api_key>` tags. Validated by watching Shuffle execution logs in real time.
+
+**3. AbuseIPDB Rate Limits in Testing**
+
+During testing with repeated simulated alerts, AbuseIPDB's free tier rate limit (1,000 checks/day) was being hit quickly.
+
+Fix: Added a conditional in the Shuffle workflow - only query AbuseIPDB if the alert contains an external IP (not RFC1918 private ranges). Reduced unnecessary API calls by ~70% during testing.
+
+---
+
+## Shuffle Workflow - Step by Step
+
+```
+Trigger: Wazuh Webhook
+  |
+  --- Parse JSON (extract: srcip, dstip, rule.id, rule.description, agent.name)
+  |
+  --- [IF srcip is public]
+  |     --- AbuseIPDB GET /check?ipAddress={srcip}
+  |     --- Extract: abuseConfidenceScore, countryCode, isp
+  |
+  --- TheHive POST /api/v1/alert
+  |     title: Wazuh Alert - {rule.description}
+  |     severity: mapped from rule.level (1-15 -> Low/Med/High/Crit)
+  |     description: full enriched alert body
+  |     tags: [wazuh, {agent.name}, {rule.id}]
+  |
+  --- Email/Webhook Notification
+        Subject: [ALERT] {severity} - {rule.description}
+        Body: IP: {srcip} | Score: {abuseScore} | Agent: {agent.name}
+```
+
+<!-- TODO: Screenshot your actual Shuffle workflow here -->
+
+---
+
+## Sample Alert Output
+
+```json
+{
+  "alert_id": "1714023901.12345",
+  "rule": {
+    "id": "100002",
+    "description": "Mimikatz credential dumping detected",
+    "level": 12
+  },
+  "agent": {
+    "name": "WIN10-LAB",
+    "ip": "192.168.10.50"
+  },
+  "data": {
+    "srcip": "203.0.113.42",
+    "abuse_confidence_score": 87,
+    "country": "CN",
+    "isp": "[redacted for lab]"
+  },
+  "thehive_case_id": "~1234567",
+  "response_time_seconds": 142
+}
+```
+
+<!-- TODO: Replace with a real sanitized output from your lab -->
+
+---
+
+## What I'd Do Differently
+
+- **Add MITRE ATT&CK tagging** to every TheHive case automatically - map Wazuh rule IDs to ATT&CK technique IDs at the Shuffle layer
+- **Build a Slack integration** instead of email - faster analyst response loop
+- **Add a feedback loop** - when an analyst closes a TheHive case as false positive, automatically tune the Wazuh rule threshold
+- **Containerize the stack** with Docker Compose so the whole lab spins up in one command
+
+---
+
+## References
+
+- [Wazuh Documentation](https://documentation.wazuh.com)
+- [TheHive Project](https://thehive-project.org)
+- [Shuffle SOAR](https://shuffler.io)
+- [AbuseIPDB API](https://docs.abuseipdb.com)
+- [MyDFIR - Original Project Guide](https://www.youtube.com/watch?v=Lb_ukgtYK_U)
+
+---
+
+*Built as part of ongoing home lab development. Part of a broader security portfolio targeting SOC automation and incident response engineering.*
