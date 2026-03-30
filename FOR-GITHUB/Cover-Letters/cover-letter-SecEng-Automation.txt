@@ -1,0 +1,14 @@
+Dear Rockstar Games Security Team,
+
+The thing that keeps coming back to me about the 2022 Rockstar breach isn't the scale — it's the simplicity. A social engineering attack through Slack. An employee in India who trusted the wrong message. Okta access handed over. Ninety videos of GTA VI on GTAForums within hours. No sophisticated zero-day required. The most catastrophic leak in gaming history came down to a repeatable human pattern, and the defense against it is repeatable automation: detection workflows that don't rely on a person catching something in time.
+
+That's exactly the kind of problem I want to work on. I'm applying for the Security Engineering Automation internship for Summer 2026. I'm completing a B.S. in Computer Science and Information Security at John Jay College of Criminal Justice and hold a CompTIA Security+ certification.
+
+My background in automation is practical, not theoretical. I built a Wazuh-TheHive-Shuffle SOAR pipeline using Python and Bash orchestration that processes security events from endpoint detection through enrichment, automated quarantine, and notification — the full incident response lifecycle in under 3 minutes with zero analyst intervention. When I ran into API compatibility issues between Wazuh and TheHive across version mismatches, I didn't just fix it — I documented the root cause and wrote a deployment guide so the fix was reproducible. That instinct — build it, break it, document it so the next person doesn't have to — is what I bring to automation work.
+
+More recently I've been doing structured work in LLM prompt engineering for security use cases: designing prompts that extract consistent, schema-compliant threat intelligence summaries, testing edge cases and failure modes, developing Python scripts to batch-process templates at scale. I've also explored prompt injection as an attack surface — documenting adversarial inputs that cause LLM-based security tools to misclassify severity.
+
+Rockstar's security automation challenges are genuinely interesting to me. A company protecting one of the most valuable and most-targeted IP portfolios in entertainment, with a virtual economy that real people invest real money into, against threat actors who are themselves technically sophisticated and highly motivated — that's not a boring detection problem. I'd be glad to contribute to your vulnerability management automation and prompt engineering work this summer.
+
+Sincerely,
+Tun Tun Aung (Jonathan)
