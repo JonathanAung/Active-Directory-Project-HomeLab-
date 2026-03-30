@@ -1,0 +1,14 @@
+Dear Rockstar Games Security Team,
+
+I bartend at a Korean speakeasy in Manhattan. Between 5 and 8pm most nights, the bar fills with finance and tech professionals unwinding after work — and without trying, I hear more than I should. People talk about their roles, their projects, their access levels. A VP describing a system migration to a date who's nodding politely. A developer mentioning a deployment that's going out next week. I've thought more than once: if I had any intent to harm, this would be effortless. That observation — that the human layer is always the softest part of any security architecture — is what drew me to application security specifically. The code can be perfect. The pipeline can be hardened. And someone will still click the wrong thing.
+
+I'm applying for the Application Security internship for Summer 2026. I'm completing a B.S. in Computer Science and Information Security at John Jay College of Criminal Justice, hold a CompTIA Security+ certification, and have hands-on experience in penetration testing, SDLC security automation, and LLM-assisted security testing.
+
+On the technical side: I've used Burp Suite to intercept and manipulate HTTP traffic across web application labs, identifying OWASP Top 10 vulnerabilities including injection points, broken authentication, and IDOR — documenting each with reproduction steps and remediation guidance. I built a Wazuh-TheHive-Shuffle SOAR pipeline in Python and Bash that automates the full incident response lifecycle in under 3 minutes. I completed a full EternalBlue offensive chain and mapped each step to MITRE ATT&CK for a defensive hardening report. I've also been doing practical work in LLM security testing: engineering structured prompts for threat triage, and specifically documenting adversarial inputs that cause severity misclassification.
+
+In my C++ and object-oriented programming coursework at John Jay, I've started asking questions that most students in the room don't think to ask: what happens if a field isn't marked private? What should we validate before accepting user input via cin? What are the edge cases that could allow unexpected behavior? That security-first reflex in a development context is exactly what AppSec requires.
+
+Rockstar's AppSec challenge is one of the most interesting in the industry. You're securing software that runs on hundreds of millions of devices, contains virtual economies where players spend real money — CS:GO knives go for $200, GTA V currency trades for real cash — and is actively targeted by threat actors who are themselves technically sophisticated gamers. Protecting all of that through the SDLC, before it ships, is a genuinely hard problem. I want to help work on it.
+
+Sincerely,
+Tun Tun Aung (Jonathan)

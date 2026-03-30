@@ -1,0 +1,16 @@
+Dear Rockstar Games Security Team,
+
+A teenager broke into Rockstar's internal Slack from a hotel room using a phone and a Fire TV Stick — not because your perimeter was weak, but because a single employee trusted the wrong message. I've thought about that breach a lot. Not just as a case study, but as a reminder of something I learned long before I studied security formally: the most dangerous attack surface isn't a network port. It's a person having a bad day and approving an MFA request they shouldn't have.
+
+I'm applying for the Security Operations internship for Summer 2026. I'm currently pursuing a B.S. in Computer Science and Information Security at John Jay College of Criminal Justice, and I hold a CompTIA Security+ certification.
+
+I grew up in Myanmar, where internet infrastructure was fragmented and the primary communication channels were WhatsApp, WeChat, and Line. When EternalBlue broke in 2017, I wasn't reading security blogs about it — I was a kid on a Windows XP machine watching spam messages flood in, completely unaware of what was happening at the infrastructure level underneath. Years later, when I finally studied the exploit in depth — the NSA keeping it secret, the Shadow Brokers leak, WannaCry — I understood it differently than someone who learned it in a lecture. I understood it as something that had already touched the world I lived in, invisibly.
+
+On the technical side: I built a Wazuh-TheHive-Shuffle SOAR pipeline from scratch that compressed incident response from manual hours to a fully automated 3-minute pipeline. I completed an EternalBlue penetration lab — the same exploit I first encountered as ambient noise in Myanmar — this time as the attacker, running the full chain from Nmap recon through Metasploit exploitation to Mimikatz credential extraction. I interned at TCR Inc. where I mapped 110 NIST SP 800-171 controls to a government contractor's infrastructure and delivered findings that reached the client's CEO.
+
+Rockstar's threat landscape is one I find genuinely compelling. You're not just protecting a company — you're protecting a virtual economy. GTA V's in-game currency trades for real money. CS:GO skins sell for more than their physical equivalents. The players who want to exploit these systems are technically sophisticated, motivated, and have enormous amounts of time. I've listened to enough episodes of Darknet Diaries to know that game hacking culture has its own underground economy, its own threat actors, and its own TTPs that don't map cleanly onto the corporate security playbook. With GTA VI launching this year, the attack surface — and the stakes — are at a historic high.
+
+I'd be glad to contribute to OSINT monitoring, external attack surface enumeration, or investigation automation on your team this summer. I'm based in New York and available for the full 10-week program.
+
+Sincerely,
+Tun Tun Aung (Jonathan)
