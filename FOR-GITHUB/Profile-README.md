@@ -56,7 +56,7 @@ CompTIA Security+ · Microsoft 365 Fundamentals · Oracle OCI Foundation · Goog
 ## Find Me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jonathan-xiong/)
-[![TryHackMe](https://img.shields.io/badge/TryHackMe-Top%204%25-red?style=flat&logo=tryhackme&logoColor=white)](https://tryhackme.com/p/YOUR-TRYHACKME-USERNAME)
+[![TryHackMe](https://img.shields.io/badge/TryHackMe-Top%204%25-red?style=flat&logo=tryhackme&logoColor=white)](https://tryhackme.com/p/Relguntan)
 
 ---
 
